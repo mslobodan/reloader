@@ -1,3 +1,17 @@
+# About this fork
+
+This fork adds support for Meteor 1.8.1 because of:
+
+<i>
+Cordova Hot Code Push mechanism is now switching versions explicitly with call to WebAppLocalServer.switchToPendingVersion instead of trying to switch every time a browser reload is detected. If you use any third party package or have your own HCP routines implemented be sure to call it before forcing a browser reload. If you use the automatic reload from the Reload meteor package you do not need to do anything.
+
+[cordova-plugin-meteor-webapp PR #62](https://github.com/meteor/cordova-plugin-meteor-webapp/pull/62)
+</i>
+
+### Usage
+
+<b>This package won't be activated automatically like `jamielob/reloader`'s package. You must call `Reloader.configure(options)` and pass desired options in order to activate it.</b>
+
 # Reloader
 
 More control over hot code push reloading for your mobile apps. A replacement for [`mdg:reload-on-resume`](https://github.com/meteor/mobile-packages/blob/master/packages/mdg:reload-on-resume/README.md) with more options and better UX.
@@ -27,7 +41,7 @@ As of Meteor 1.3, if you prevent instant reloading on updates, the newest versio
 ### Installation
 
 ```sh
-meteor add jamielob:reloader
+meteor add mslobodan:reloader
 meteor remove mdg:reload-on-resume
 ```
 
@@ -35,7 +49,14 @@ If you have any calls to `location.reload()` or `location.replace(location.href)
 
 ## Configure
 
-The default options are shown below. You can override them anywhere in your `client/` folder.
+This version of reloader doesn't have default options. In order to activate this package you must call 
+```js
+Reloader.configure(options)
+``` 
+and pass desired options as soon as possible in code.
+
+
+Preferred options are:
 
 ```js
 Reloader.configure({
@@ -46,7 +67,7 @@ Reloader.configure({
 });
 ```
 
-These default options will make sure that your app is up to date every time a user starts your app, or comes back to it after 10 minutes of being idle.
+These options will make sure that your app is up to date every time a user starts your app, or comes back to it after 10 minutes of being idle.
 
 Another popular configuration is:
 
@@ -171,7 +192,7 @@ This package also provides an easy reload event that you can attach to a button 
 ### Run tests
 
 ```bash
-git clone git@github.com:jamielob/reloader.git
+git clone git@github.com:mslobodan/reloader.git
 cd reloader
 # uncomment the noted line in package.js
 meteor test-packages ./ --driver-package practicalmeteor:mocha
@@ -180,6 +201,6 @@ open localhost:3000
 
 ### Credits
 
-[Contributors](https://github.com/jamielob/reloader/graphs/contributors)
+[Contributors](https://github.com/mslobodan/reloader/graphs/contributors)
 
 And thanks to @martijnwalraven for his help with this packages and superb work on Meteor Cordova! 👏
