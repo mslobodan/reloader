@@ -1,23 +1,19 @@
 Package.describe({
   name: 'mslobodan:reloader',
-  version: '1.3.0',
+  version: '1.3.2',
   summary: 'More control over hot code push reloading',
   git: 'https://github.com/mslobodan/reloader/',
   documentation: 'README.md'
 });
 
-Cordova.depends({
-  'cordova-plugin-splashscreen': '4.1.0'
-});
-
 Package.onUse(function (api) {
-  api.versionsFrom('1.3.1');
+  api.versionsFrom('2.16');
 
   api.use(['ecmascript',
     'check',
     'underscore',
     'reload',
-    'templating',
+    'templating@1.4.2',
     'reactive-var',
     'tracker',
     'launch-screen'], 'client');
